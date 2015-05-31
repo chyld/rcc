@@ -32,6 +32,17 @@ class Cuboid
     points
   end
 
+  def intersects?(other)
+    raise(ArgumentError, 'other is invalid') unless other.is_a? Cuboid
+
+    vertices1 = self.vertices
+    vertices2 = other.vertices
+
+    ![:x, :y, :z].any? do |axis|
+      clear?(axis, vertices1, vertices2)
+    end
+  end
+
   #
   # PRIVATE METHODS
   #
@@ -40,6 +51,14 @@ class Cuboid
 
   def calc(axis, dimension, value)
     @origin[axis] + (value.odd? ? 1 : -1)  * @volume[dimension].fdiv(2)
+  end
+
+  def clear?(axis, vertices1, vertices2)
+    2.times.any? do |num|
+      vertices1.all? do |v1|
+        vertices2.all? {|v2| num.odd? ? v1[axis] > v2[axis] : v1[axis] < v2[axis]}
+      end
+    end
   end
 
   def origin?(origin)

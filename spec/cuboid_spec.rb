@@ -69,4 +69,20 @@ describe Cuboid do
     end
   end
 
+  describe "intersects?" do
+    it "should not intersect" do
+      origin = {x: 0, y: 0, z: 0}
+      volume = {width: 1, height: 1, length: 1}
+      other = Cuboid.new(origin, volume)
+      expect(subject.intersects?(other)).to be false
+    end
+
+    it "should intersect" do
+      origin = {x: 0, y: 0, z: 0}
+      volume = {width: 6, height: 7, length: 8}
+      other = Cuboid.new(origin, volume)
+      expect(subject.intersects?(other)).to be true
+    end
+  end
+
 end
