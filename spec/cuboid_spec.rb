@@ -54,4 +54,19 @@ describe Cuboid do
     end
   end
 
+  describe "vertices" do
+    it "gets the vertices for a cuboid" do
+      expect(subject.vertices).to eq([
+        {:x=>3.0, :y=>3.5, :z=>4.0},
+        {:x=>3.0, :y=>3.5, :z=>8.0},
+        {:x=>3.0, :y=>6.5, :z=>4.0},
+        {:x=>3.0, :y=>6.5, :z=>8.0},
+        {:x=>5.0, :y=>3.5, :z=>4.0},
+        {:x=>5.0, :y=>3.5, :z=>8.0},
+        {:x=>5.0, :y=>6.5, :z=>4.0},
+        {:x=>5.0, :y=>6.5, :z=>8.0}
+      ])
+    end
+  end
+
 end

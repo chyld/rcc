@@ -18,11 +18,29 @@ class Cuboid
     @origin = origin
   end
 
+  def vertices
+    points = []
+
+    2.times do |a|
+      2.times do |b|
+        2.times do |c|
+          points.push({x: calc(:x, :width, a), y: calc(:y, :height, b), z: calc(:z, :length, c)})
+        end
+      end
+    end
+
+    points
+  end
+
   #
   # PRIVATE METHODS
   #
 
   private
+
+  def calc(axis, dimension, value)
+    @origin[axis] + (value.odd? ? 1 : -1)  * @volume[dimension].fdiv(2)
+  end
 
   def origin?(origin)
     hash?(origin, [:x, :y, :z])
