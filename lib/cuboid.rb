@@ -12,6 +12,12 @@ class Cuboid
     @volume = volume
   end
 
+  def move_to!(origin)
+    raise(ArgumentError, 'origin is invalid') unless origin? origin
+
+    @origin = origin
+  end
+
   #
   # PRIVATE METHODS
   #

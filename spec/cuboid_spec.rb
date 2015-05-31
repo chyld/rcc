@@ -42,4 +42,16 @@ describe Cuboid do
     end
   end
 
+  describe "move_to" do
+    it "changes the origin" do
+      origin = {x: 1, y: 1, z: 1}
+      expect(subject.move_to!(origin)).to eq({x:1, y:1, z:1})
+    end
+
+    it "fails to change origin - invalid argument" do
+      origin = {x: 1, y: 1}
+      expect { subject.move_to!(origin) }.to raise_error ArgumentError
+    end
+  end
+
 end
